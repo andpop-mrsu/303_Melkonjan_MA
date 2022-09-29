@@ -76,7 +76,7 @@ with open("./dataset/users.txt", "r", encoding="UTF-8") as file:
     read = file.readlines()
 
     for i in range(len(read)):
-        user_data = read[i].removesuffix('\n').split("|")
+        user_data = read[i][:-1].split("|")
         users.append(user_data[1:])
 
 with open("db_init.sql", 'w', encoding="UTF-8") as file:
