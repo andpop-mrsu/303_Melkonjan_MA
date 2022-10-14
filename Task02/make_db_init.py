@@ -15,7 +15,7 @@ table_names = ("movies", "tags", "ratings", "users")
 tables = ["""\nCREATE TABLE movies(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         `title` TEXT,
-        `year` DATE,
+        `year` INTEGER,
         `geners` TEXT
 );
 """,
@@ -57,16 +57,16 @@ for i in range(len(movies)):
     try:
         movie = [
             movies[i][0],
-            movies[i][1].split('(')[0],
-            movies[i][1].split('(')[1].split(')')[0],
+            movies[i][1],
+            int(movies[i][1].strip()[-5:-1:]),
             movies[i][2]
         ]
         movies[i] = movie
     except:
         movie = [
             movies[i][0],
-            movies[i][1].split('(')[0],
-            'none',
+            movies[i][1],
+            None,
             movies[i][2]
         ]
         movies[i] = movie
@@ -89,13 +89,16 @@ with open("db_init.sql", 'w', encoding="UTF-8") as file:
     insert = "\nINSERT INTO movies VALUES "
     file.write(insert)
     for i in range(len(movies)):
-
+        if movies[i][2] == None:
+            file.write(
+                f"""({movies[i][0]},"{movies[i][1].replace('"', "'")}",NULL,"{movies[i][3]}"),\n""")
+            continue
         if i != len(movies) - 1:
             file.write(
-                f"""(NULL,"{movies[i][1].replace('"', "'")}","{movies[i][2]}","{movies[i][3]}"),\n""")
+                f"""({movies[i][0]},"{movies[i][1].replace('"', "'")}","{movies[i][2]}","{movies[i][3]}"),\n""")
         else:
             file.write(
-                f"""(NULL,"{movies[i][1]}","{movies[i][2]}","{movies[i][3]}");\n""")
+                f"""({movies[i][0]},"{movies[i][1]}","{movies[i][2]}","{movies[i][3]}");\n""")
 
     insert = "\nINSERT INTO tags VALUES "
     file.write(insert)
