@@ -110,13 +110,13 @@
     ?>
 
     <table border="1" width="100%" cellpadding="10" class="table">
-        <tr>
+        <thead>
             <th>ID</th>
             <th>ФИО</th>
             <th>День</th>
             <th>Услуга</th>
             <th>Цена</th>
-        </tr>
+        </thead>
         <?php foreach($data as $d) { ?>
             <tr>
                 <th><?= $d["id"] ?></th>
