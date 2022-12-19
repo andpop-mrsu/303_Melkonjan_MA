@@ -40,7 +40,11 @@ foreach ($data as $d) {
 
 $array_id = array_unique($array_id);
 sort($array_id);
+$array_id[] = 85;
+$array_id[] = 1095;
 $array_id = column_alignment($array_id);
+
+
 
 print_r("╔═══════════════════════════" . str_repeat('═', $array_id[count($array_id) - 1] - 1) . "═╗\n");
 print_r("║ Выберите номер мастера :   " . str_repeat(' ', $array_id[count($array_id) - 1] - 1) . "║\n");
@@ -94,6 +98,6 @@ print_r("║ " . str_repeat(' ', $array_id[count($array_id) - 1] - 1) . "ID  ║
 print_r("╠══" . str_repeat('═', $array_id[count($array_id) - 1]) . "══╬═══" . str_repeat('═', $array_full_name[count($array_id) - 1]) . "═╬══" . str_repeat('═', $array_day[count($array_id) - 1]) . "══╬══" . str_repeat('═', $array_services[count($array_id) - 1]) . "══╬══" . str_repeat('═', $array_prices[count($array_id) - 1]) . "══╣\n");
 for ($i = 0; $i < count($array_prices) - 1; ++$i) {
     $format = "║  %d  ║  %s  ║  %s  ║  %s  ║  %s  ║\n";
-    echo sprintf($format, $array_id[$i], $array_full_name[$i], $array_day[$i], $array_services[$i], $array_prices[$i]); //,$d['date'],$d['name_service'],$d["price"]);
+    echo sprintf($format, $array_id[$i], $array_full_name[$i], $array_day[$i], $array_services[$i], $array_prices[$i]);
 }
 print_r("╚══" . str_repeat('═', $array_id[count($array_id) - 1]) . "══╩═══" . str_repeat('═', $array_full_name[count($array_id) - 1]) . "═╩══" . str_repeat('═', $array_day[count($array_id) - 1]) . "══╩══" . str_repeat('═', $array_services[count($array_id) - 1]) . "══╩══" . str_repeat('═', $array_prices[count($array_id) - 1]) . "══╝\n");
